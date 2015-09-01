@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.csainz.androidwikipedia.R;
@@ -28,7 +29,7 @@ public class MainActivity extends GenericActivity<HobbitOps.View, HobbitOps>
     /**
      * ListView displays the Hobbit character information.
      */
-//    private ListView mListView;
+    private ListView mListView;
 
     /**
      * Uri for the "Necromancer".
@@ -43,31 +44,24 @@ public class MainActivity extends GenericActivity<HobbitOps.View, HobbitOps>
     /**
      * Menu on main screen.
      */
-//    protected Menu mOpsOptionsMenu;
+    protected Menu mOpsOptionsMenu;
 
 
-    /**
-     * Activity lifecycle method
-     *
-     * @param savedInstanceState
-     */
     /**
      * Hook method called when a new instance of Activity is created. One time initialization code
      * goes here, e.g., initializing views.
      *
-     * @param Bundle    object that contains saved state information.
+     * @param savedInstanceState    object that contains saved state information.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set the content view for this Activity.
         setContentView(R.layout.activity_main);
 
-//        // Set the content view for this Activity.
-//        setContentView(R.layout.hobbit_activity);
-//
-//        // Initialize the List View.
-//        mListView = (ListView) findViewById(R.id.list);
-//
+        // Initialize the List View.
+        mListView = (ListView) findViewById(R.id.list);
+
 //        // Invoke the special onCreate() method in GenericActivity passing in the HobbitOps class
 //        // to instantiate/manage and "this" to provide HobbitOps with the HobbitOps.View instance.
 //        super.onCreate(savedInstanceState, HobbitOps.class, this);
@@ -95,9 +89,9 @@ public class MainActivity extends GenericActivity<HobbitOps.View, HobbitOps>
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

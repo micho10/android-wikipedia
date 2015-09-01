@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Android wikipedia</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="add_all">Add\nAll</string>
+    <string name="delete_all">Delete\nAll</string>
+    <string name="display_all">Display\nAll</string>
+    <string name="modify_all">Modify\nAll</string>
+    <string name="content_resolver">Content Resolver</string>
+    <string name="content_provider_client">Content Provider Client</string>
+
 </resources>
