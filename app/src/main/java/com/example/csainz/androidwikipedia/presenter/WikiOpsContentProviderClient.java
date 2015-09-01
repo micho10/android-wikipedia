@@ -14,7 +14,7 @@ import android.os.RemoteException;
  * pattern and the "Concrete Class" in the TemplateMethod pattern. It's also an example of the
  * "External Polymorphism" pattern.
  */
-public class HobbitOpsContentProviderClient extends HobbitOpsImpl {
+public class WikiOpsContentProviderClient extends WikiOpsImpl {
     /**
      * Define an optimized Proxy for accessing the HobbitContentProvider.
      */
@@ -23,16 +23,16 @@ public class HobbitOpsContentProviderClient extends HobbitOpsImpl {
 
     /**
      * Hook method dispatched by the GenericActivity framework to initialize the
-     * HobbitOpsContentProviderClient object after it's been created.
+     * WikiOpsContentProviderClient object after it's been created.
      *
-     * @param view     The currently active HobbitOps.View.
+     * @param view     The currently active WikiOps.View.
      * @param firstTimeIn  Set to "true" if this is the first time the
      *                     Ops class is initialized, else set to
      *                     "false" if called after a runtime
      *                     configuration change.
      */
     @Override
-    public void onConfiguration(HobbitOps.View view, boolean firstTimeIn) {
+    public void onConfiguration(WikiOps.View view, boolean firstTimeIn) {
         super.onConfiguration(view, firstTimeIn);
         
         if (firstTimeIn) {

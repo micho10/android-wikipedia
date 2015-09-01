@@ -9,7 +9,7 @@ public interface ConfigurableOps<View> {
      * Hook method dispatched by the GenericActivity framework to initialize an operations ("Ops")
      * object after it's been created.
      *
-     * @param View
+     * @param view
      *        The currently active View.
      * @param firstTimeIn
      *        Set to "true" if this is the first time the Ops class is

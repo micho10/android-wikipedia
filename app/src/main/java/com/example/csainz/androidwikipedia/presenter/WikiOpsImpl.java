@@ -17,17 +17,17 @@ import android.widget.Toast;
  * pattern and the "Abstract Class" in the Template Method pattern. It's also an example of the
  * "External Polymorphism" pattern.
  */
-public abstract class HobbitOpsImpl {
+public abstract class WikiOpsImpl {
     /**
      * Debugging tag used by the Android logger.
      */
-    protected final static String TAG = HobbitOpsImpl.class.getSimpleName();
+    protected final static String TAG = WikiOpsImpl.class.getSimpleName();
 
     /**
-     * Stores a Weak Reference to the HobbitOps.View so the garbage collector can remove it when
+     * Stores a Weak Reference to the WikiOps.View so the garbage collector can remove it when
      * it's not in use.
      */
-    protected WeakReference<HobbitOps.View> mHobbitView;
+    protected WeakReference<WikiOps.View> mHobbitView;
 
     /**
      * Contains the most recent result from a query so the display can be updated after a runtime
@@ -37,16 +37,16 @@ public abstract class HobbitOpsImpl {
 
 
     /**
-     * Hook method dispatched by the GenericActivity framework to initialize the HobbitOpsImpl
+     * Hook method dispatched by the GenericActivity framework to initialize the WikiOpsImpl
      * object after it's been created.
      *
-     * @param view         The currently active HobbitOps.View.
+     * @param view         The currently active WikiOps.View.
      * @param firstTimeIn  Set to "true" if this is the first time the
      *                     Ops class is initialized, else set to
      *                     "false" if called after a runtime
      *                     configuration change.
      */
-    public void onConfiguration(HobbitOps.View view, boolean firstTimeIn) {
+    public void onConfiguration(WikiOps.View view, boolean firstTimeIn) {
         // Create a WeakReference to the HobbitView.
         mHobbitView = new WeakReference<>(view);
         
