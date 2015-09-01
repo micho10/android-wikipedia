@@ -52,8 +52,10 @@ public class GenericActivity<Interface, OpsType extends ConfigurableOps<Interfac
     /**
      * Handle hardware (re)configurations, such as rotating the display.
      *
-     * @throws IllegalAccessException 
-     * @throws InstantiationException 
+     * @param opsType
+     * @param instance
+     * @throws InstantiationException
+     * @throws IllegalAccessException
      */
     public void handleConfiguration(Class<OpsType> opsType, Interface instance)
         throws InstantiationException, IllegalAccessException {
@@ -87,8 +89,10 @@ public class GenericActivity<Interface, OpsType extends ConfigurableOps<Interfac
     /**
      * Initialize the GenericActivity fields.
      *
-     * @throws IllegalAccessException 
-     * @throws InstantiationException 
+     * @param opsType
+     * @param instance
+     * @throws InstantiationException
+     * @throws IllegalAccessException
      */
     private void initialize(Class<OpsType> opsType, Interface instance)
             throws InstantiationException, IllegalAccessException {
@@ -104,7 +108,7 @@ public class GenericActivity<Interface, OpsType extends ConfigurableOps<Interfac
 
 
     /**
-     * Return the initialized OpsType instance for use by the application.
+     * @return the initialized OpsType instance for use by the application.
      */
     public OpsType getOps() {
         return mOpsInstance;
@@ -112,7 +116,7 @@ public class GenericActivity<Interface, OpsType extends ConfigurableOps<Interfac
 
 
     /**
-     * Return the initialized OpsType instance for use by the application.
+     * @return the RetainedFragmentManager
      */
     public RetainedFragmentManager getRetainedFragmentManager() {
         return mRetainedFragmentManager;
@@ -120,7 +124,7 @@ public class GenericActivity<Interface, OpsType extends ConfigurableOps<Interfac
 
 
     /**
-     * Return the Activity context.
+     * @return the Activity context.
      */
     public Context getActivityContext() {
         return this;
@@ -128,7 +132,7 @@ public class GenericActivity<Interface, OpsType extends ConfigurableOps<Interfac
 
 
     /**
-     * Return the Application context.
+     * @return the Application context.
      */
     public Context getApplicationContext() {
         return super.getApplicationContext();

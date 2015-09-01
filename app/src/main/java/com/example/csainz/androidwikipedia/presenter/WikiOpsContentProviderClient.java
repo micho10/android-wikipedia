@@ -47,8 +47,8 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
 
     
     /**
-    * Release the ContentProviderClient to prevent leaks.
-    */
+     * Release the ContentProviderClient to prevent leaks.
+     */
     public void close() {
         mCpc.release();
     }
@@ -57,6 +57,11 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
     /**
      * Insert @a ContentValues into the HobbitContentProvider at the @a uri. Plays the role of an
      * "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @return
+     * @throws RemoteException
      */
     public Uri insert(Uri uri, ContentValues cvs) throws RemoteException {
         return mCpc.insert(uri, cvs);
@@ -66,6 +71,11 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
     /**
      * Insert an array of @a ContentValues into the HobbitContentProvider at the @a uri. Plays the
      * role of an "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvsArray
+     * @return
+     * @throws RemoteException
      */
     protected int bulkInsert(Uri uri, ContentValues[] cvsArray) throws RemoteException {
         return mCpc.bulkInsert(uri, cvsArray);
@@ -75,19 +85,27 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
     /**
      * Return a Cursor from a query on the HobbitContentProvider at the @a uri. Plays the role of
      * an "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param projection
+     * @param selection
+     * @param selectionArgs
+     * @param sortOrder
+     * @return
+     * @throws RemoteException
      */
     public Cursor query(Uri uri,
                         String[] projection,
                         String selection,
                         String[] selectionArgs,
-                        String sortOrder) 
-        throws RemoteException {
+                        String sortOrder)
+            throws RemoteException {
         // Query for all the characters in the HobbitContentProvider.
         return mCpc.query(uri,
-                          projection,
-                          selection,
-                          selectionArgs,
-                          sortOrder);
+                projection,
+                selection,
+                selectionArgs,
+                sortOrder);
     }
 
 
@@ -95,6 +113,13 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
      * Delete the @a selection and @a selectionArgs with the @a ContentValues in the
      * HobbitContentProvider at the @a uri. Plays the role of an "concrete hook method" in the
      * Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @param selection
+     * @param selectionArgs
+     * @return
+     * @throws RemoteException
      */
     public int update(Uri uri,
                       ContentValues cvs,
@@ -111,6 +136,12 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
     /**
      * Delete the @a selection and @a selectionArgs from the HobbitContentProvider at the @a uri.
      * Plays the role of an "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
+     * @throws RemoteException
      */
     protected int delete(Uri uri,
                          String selection,

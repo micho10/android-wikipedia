@@ -27,7 +27,7 @@ public abstract class WikiOpsImpl {
      * Stores a Weak Reference to the WikiOps.View so the garbage collector can remove it when
      * it's not in use.
      */
-    protected WeakReference<WikiOps.View> mHobbitView;
+    protected WeakReference<WikiOps.View> mWikiView;
 
     /**
      * Contains the most recent result from a query so the display can be updated after a runtime
@@ -48,11 +48,11 @@ public abstract class WikiOpsImpl {
      */
     public void onConfiguration(WikiOps.View view, boolean firstTimeIn) {
         // Create a WeakReference to the HobbitView.
-        mHobbitView = new WeakReference<>(view);
+        mWikiView = new WeakReference<>(view);
         
         if (!firstTimeIn && mCursor != null)
             // Redisplay the contents of the cursor after a runtime configuration change.
-            mHobbitView.get().displayCursor(mCursor);
+            mWikiView.get().displayCursor(mCursor);
     }
 
 
@@ -65,11 +65,11 @@ public abstract class WikiOpsImpl {
 
 
     /**
-     * Return a @a SimpleCursorAdapter that can be used to display the contents of the Hobbit
+     * Return a @a SimpleCursorAdapter that can be used to display the contents of the Wikipedia
      * ContentProvider.
      */
     public SimpleCursorAdapter makeCursorAdapter() {
-        return new SimpleCursorAdapter(mHobbitView.get().getActivityContext(),
+        return new SimpleCursorAdapter(mWikiView.get().getActivityContext(),
                                        R.layout.list_layout,
                                        null,
                                        CharacterContract.CharacterEntry.sColumnsToDisplay,
@@ -81,6 +81,11 @@ public abstract class WikiOpsImpl {
     /**
      * Insert a Hobbit @a character of a particular @a race into the HobbitContentProvider. Plays
      * the role of a "template method" in the Template Method pattern.
+     *
+     * @param character
+     * @param race
+     * @return
+     * @throws RemoteException
      */
     public Uri insert(String character, String race) throws RemoteException {
         final ContentValues cvs = new ContentValues();
@@ -97,6 +102,11 @@ public abstract class WikiOpsImpl {
     /**
      * Insert @a ContentValues into the HobbitContentProvider at the @a uri. Plays the role of an
      * "abstract hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @return
+     * @throws RemoteException
      */
     protected abstract Uri insert(Uri uri, ContentValues cvs) throws RemoteException;
 
@@ -104,6 +114,11 @@ public abstract class WikiOpsImpl {
     /**
      * Insert an array of Hobbit @a characters of a particular @a race into the
      * HobbitContentProvider. Plays the role of a "template method" in the Template Method pattern.
+     *
+     * @param characters
+     * @param race
+     * @return
+     * @throws RemoteException
      */
     public int bulkInsert(String[] characters, String race) throws RemoteException {
         // Use ContentValues to store the values in appropriate columns, so that ContentResolver
@@ -129,6 +144,11 @@ public abstract class WikiOpsImpl {
     /**
      * Insert an array of @a ContentValues into the HobbitContentProvider at the @a uri. Plays the
      * role of an "abstract hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvsArray
+     * @return
+     * @throws RemoteException
      */
     protected abstract int bulkInsert(Uri uri, ContentValues[] cvsArray) throws RemoteException;
 
@@ -136,6 +156,14 @@ public abstract class WikiOpsImpl {
     /**
      * Return a Cursor from a query on the HobbitContentProvider at the @a uri. Plays the role of
      * an "abstract hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param projection
+     * @param selection
+     * @param selectionArgs
+     * @param sortOrder
+     * @return
+     * @throws RemoteException
      */
     public abstract Cursor query(Uri uri,
                                  String[] projection,
@@ -148,6 +176,12 @@ public abstract class WikiOpsImpl {
     /**
      * Update the @a name and @a race of a Hobbit character at a designated @a uri from the
      * HobbitContentProvider. Plays the role of a "template method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param name
+     * @param race
+     * @return
+     * @throws RemoteException
      */
     public int updateByUri(Uri uri, String name, String race) throws RemoteException {
         final ContentValues cvs = new ContentValues();
@@ -163,6 +197,11 @@ public abstract class WikiOpsImpl {
     /**
      * Update the @a race of a Hobbit character with a given @a name in the HobbitContentProvider.
      * Plays the role of a "template method" in the Template Method pattern.
+     *
+     * @param name
+     * @param race
+     * @return
+     * @throws RemoteException
      */
     public int updateRaceByName(String name, String race) throws RemoteException {
         final ContentValues cvs = new ContentValues();
@@ -179,6 +218,13 @@ public abstract class WikiOpsImpl {
      * Delete the @a selection and @a selectionArgs with the @a ContentValues in the
      * HobbitContentProvider at the @a uri. Plays the role of an "abstract hook method" in the
      * Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @param selection
+     * @param selectionArgs
+     * @return
+     * @throws RemoteException
      */
     public abstract int update(Uri uri,
                                ContentValues cvs,
@@ -190,6 +236,10 @@ public abstract class WikiOpsImpl {
     /**
      * Delete an array of Hobbit @a characterNames from the HobbitContentProvider. Plays the role
      * of a "template method" in the Template Method pattern.
+     *
+     * @param characterNames
+     * @return
+     * @throws RemoteException
      */
     public int deleteByName(String[] characterNames)
         throws RemoteException {
@@ -202,6 +252,10 @@ public abstract class WikiOpsImpl {
     /**
      * Delete an array of Hobbit @a characterRaces from the HobbitContentProvider. Plays the role
      * of a "template method" in the Template Method pattern.
+     *
+     * @param characterRaces
+     * @return
+     * @throws RemoteException
      */
     public int deleteByRace(String[] characterRaces)
         throws RemoteException {
@@ -214,6 +268,12 @@ public abstract class WikiOpsImpl {
     /**
      * Delete the @a selection and @a selectionArgs from the HobbitContentProvider at the @a uri.
      * Plays the role of an "abstract hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
+     * @throws RemoteException
      */
     protected abstract int delete(Uri uri,
                                   String selection,
@@ -235,6 +295,8 @@ public abstract class WikiOpsImpl {
 
     /**
      * Display the current contents of the HobbitContentProvider.
+     *
+     * @throws RemoteException
      */
     public void displayAll() throws RemoteException {
         // Query for all the characters in the HobbitContentProvider.
@@ -257,13 +319,13 @@ public abstract class WikiOpsImpl {
                         null);
 
         if (mCursor.getCount() == 0) {
-            Toast.makeText(mHobbitView.get().getActivityContext(), "No items to display",
+            Toast.makeText(mWikiView.get().getActivityContext(), "No items to display",
                     Toast.LENGTH_SHORT).show();
             // Remove the display if there's nothing left to show.
-            mHobbitView.get().displayCursor(mCursor = null);
+            mWikiView.get().displayCursor(mCursor = null);
         } else
             // Display the results of the query.
-            mHobbitView.get().displayCursor(mCursor);
+            mWikiView.get().displayCursor(mCursor);
     }
 
 }

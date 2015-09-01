@@ -69,11 +69,9 @@ public class WikiOps implements ConfigurableOps<WikiOps.View> {
      * Hook method dispatched by the GenericActivity framework to initialize the WikiOps object
      * after it's been created.
      *
-     * @param view     The currently active HobbitView.
-     * @param firstTimeIn  Set to "true" if this is the first time the
-     *                     Ops class is initialized, else set to
-     *                     "false" if called after a runtime
-     *                     configuration change.
+     * @param view         The currently active WikiView.
+     * @param firstTimeIn  Set to "true" if this is the first time the Ops class is initialized,
+     *                     else set to "false" if called after a runtime configuration change.
      */
     @Override
     public void onConfiguration(WikiOps.View view, boolean firstTimeIn) {
@@ -127,6 +125,12 @@ public class WikiOps implements ConfigurableOps<WikiOps.View> {
     /**
      * Update the @a name and @a race of a Hobbit character at a designated @a uri from the
      * HobbitContentProvider.
+     *
+     * @param uri
+     * @param name
+     * @param race
+     * @return
+     * @throws RemoteException
      */
     public int updateByUri(Uri uri, String name, String race) throws RemoteException {
         return mWikiOpsImpl.updateByUri(uri, name, race);
@@ -135,6 +139,11 @@ public class WikiOps implements ConfigurableOps<WikiOps.View> {
 
     /**
      * Update the @a race of a Hobbit character with the given @a name.
+     *
+     * @param name
+     * @param race
+     * @return
+     * @throws RemoteException
      */
     public int updateRaceByName(String name, String race) throws RemoteException {
         return mWikiOpsImpl.updateRaceByName(name, race);
@@ -143,6 +152,10 @@ public class WikiOps implements ConfigurableOps<WikiOps.View> {
 
     /**
      * Delete an array of Hobbit @a characterNames from theHobbitContentProvider.
+     *
+     * @param characterNames
+     * @return
+     * @throws RemoteException
      */
     public int deleteByName(String[] characterNames) 
         throws RemoteException {
@@ -152,6 +165,10 @@ public class WikiOps implements ConfigurableOps<WikiOps.View> {
 
     /**
      * Delete an array of Hobbit @a characterRaces from the HobbitContentProvider.
+     *
+     * @param characterRaces
+     * @return
+     * @throws RemoteException
      */
     public int deleteByRace(String[] characterRaces) throws RemoteException {
         return mWikiOpsImpl.deleteByRace(characterRaces);
@@ -160,6 +177,9 @@ public class WikiOps implements ConfigurableOps<WikiOps.View> {
 
     /**
      * Delete all characters in the HobbitContentProvider.
+     *
+     * @return
+     * @throws RemoteException
      */
     public int deleteAll() throws RemoteException {
         return mWikiOpsImpl.deleteAll();
@@ -168,6 +188,8 @@ public class WikiOps implements ConfigurableOps<WikiOps.View> {
 
     /**
      * Display the current contents of the HobbitContentProvider.
+     *
+     * @throws RemoteException
      */
     public void displayAll() throws RemoteException {
         mWikiOpsImpl.displayAll();
@@ -177,6 +199,8 @@ public class WikiOps implements ConfigurableOps<WikiOps.View> {
     /**
      * Sets the type for accessing the ContentProvider (i.e., CONTENT_RESOLVER or
      * CONTENT_PROVIDER_CLIENT) for the WikiOps implementation.
+     *
+     * @param accessType
      */
     public void setContentProviderAccessType(ContentProviderAccessType accessType) {
         // Select the appropriate type of access to the Content Provider.

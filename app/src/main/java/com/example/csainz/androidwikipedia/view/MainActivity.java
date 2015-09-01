@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
 import com.example.csainz.androidwikipedia.R;
 import com.example.csainz.androidwikipedia.common.GenericActivity;
