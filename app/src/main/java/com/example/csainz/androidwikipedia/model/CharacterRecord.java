@@ -75,4 +75,5 @@ class CharacterRecord {
     void setRace(String race) {
         mRace = race;
     }
+
 }

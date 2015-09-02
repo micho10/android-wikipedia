@@ -34,38 +34,57 @@ public class HobbitProvider extends ContentProvider {
      * Implementation of the HobbitProvider, which is either HobbitProviderHashMap or
      * HobbiProviderSQLite.
      */
-    private HobbitProviderImpl mImpl;
+    private HobbitProviderImpl hobbitProvider;
 
 
     /**
      * Method called to handle type requests from client applications. It returns the MIME type of
-     * the data associated with each URI.  */
+     * the data associated with each URI.
+     *
+     * @param uri
+     * @return
+     */
     @Override
     public String getType(Uri uri) {
-        return mImpl.getType(uri);
+        return hobbitProvider.getType(uri);
     }
 
 
     /**
      * Method called to handle insert requests from client applications.
+     *
+     * @param uri
+     * @param cvs
+     * @return
      */
     @Override
     public Uri insert(Uri uri, ContentValues cvs) {
-        return mImpl.insert(uri, cvs);
+        return hobbitProvider.insert(uri, cvs);
     }
 
 
     /**
      * Method that handles bulk insert requests.
+     *
+     * @param uri
+     * @param cvsArray
+     * @return
      */
     @Override
     public int bulkInsert(Uri uri, ContentValues[] cvsArray) {
-        return mImpl.bulkInsert(uri, cvsArray);
+        return hobbitProvider.bulkInsert(uri, cvsArray);
     }
 
 
     /**
      * Method called to handle query requests from client applications.
+     *
+     * @param uri
+     * @param projection
+     * @param selection
+     * @param selectionArgs
+     * @param sortOrder
+     * @return
      */
     @Override
     public Cursor query(Uri uri,
@@ -73,39 +92,50 @@ public class HobbitProvider extends ContentProvider {
                         String selection,
                         String[] selectionArgs,
                         String sortOrder) {
-        return mImpl.query(uri, 
-                           projection,
-                           selection,
-                           selectionArgs,
-                           sortOrder);
+        return hobbitProvider.query(uri,
+                projection,
+                selection,
+                selectionArgs,
+                sortOrder);
     }
 
 
     /**
      * Method called to handle update requests from client applications.
+     *
+     * @param uri
+     * @param cvs
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int update(Uri uri,
                       ContentValues cvs,
                       String selection,
                       String[] selectionArgs) {
-        return mImpl.update(uri,
-                            cvs,
-                            selection,
-                            selectionArgs);
+        return hobbitProvider.update(uri,
+                cvs,
+                selection,
+                selectionArgs);
     }
 
 
     /**
      * Method called to handle delete requests from client applications.
+     *
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int delete(Uri uri,
                       String selection,
                       String[] selectionArgs) {
-        return mImpl.delete(uri, 
-                            selection,
-                            selectionArgs);
+        return hobbitProvider.delete(uri,
+                              selection,
+                              selectionArgs);
     }
 
 
@@ -117,14 +147,13 @@ public class HobbitProvider extends ContentProvider {
         // Select the concrete implementor.
         switch(mContentProviderType) {
         case HASH_MAP:
-            mImpl = new HobbitProviderImplHashMap(getContext());
+            hobbitProvider = new HobbitProviderImplHashMap(getContext());
             break;
         case SQLITE:
-            mImpl = new HobbitProviderImplSQLite(getContext());
-            break;
+            hobbitProvider = new HobbitProviderImplSQLite(getContext());
         }
 
-        return mImpl.onCreate();
+        return hobbitProvider.onCreate();
     }
 
 }

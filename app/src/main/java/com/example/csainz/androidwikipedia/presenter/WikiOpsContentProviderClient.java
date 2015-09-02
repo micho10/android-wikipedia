@@ -10,22 +10,22 @@ import android.os.RemoteException;
 
 /**
  * Class that uses a ContentProviderClient to insert, query, update, and delete characters from the
- * HobbitContentProvider. This class plays the role of the "Concrete Implementor" in the Bridge
+ * WikiContentProvider. This class plays the role of the "Concrete Implementor" in the Bridge
  * pattern and the "Concrete Class" in the TemplateMethod pattern. It's also an example of the
  * "External Polymorphism" pattern.
  */
 public class WikiOpsContentProviderClient extends WikiOpsImpl {
     /**
-     * Define an optimized Proxy for accessing the HobbitContentProvider.
+     * Define an optimized Proxy for accessing the WikiContentProvider.
      */
-    private ContentProviderClient mCpc;
+    private ContentProviderClient contentProviderClient;
 
 
     /**
      * Hook method dispatched by the GenericActivity framework to initialize the
      * WikiOpsContentProviderClient object after it's been created.
      *
-     * @param view     The currently active WikiOps.View.
+     * @param view         The currently active WikiOps.View.
      * @param firstTimeIn  Set to "true" if this is the first time the
      *                     Ops class is initialized, else set to
      *                     "false" if called after a runtime
@@ -37,10 +37,10 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
         
         if (firstTimeIn) {
             // Get this Application context's ContentResolver.
-            ContentResolver cr = view.getApplicationContext().getContentResolver();
+            ContentResolver contentResolver = view.getApplicationContext().getContentResolver();
 
             // Get the ContentProviderClient associated with this ContentResolver.
-            mCpc = cr.acquireContentProviderClient
+            contentProviderClient = contentResolver.acquireContentProviderClient
                 (CharacterContract.CharacterEntry.CONTENT_URI);
         } 
     }
@@ -50,12 +50,12 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
      * Release the ContentProviderClient to prevent leaks.
      */
     public void close() {
-        mCpc.release();
+        contentProviderClient.release();
     }
 
 
     /**
-     * Insert @a ContentValues into the HobbitContentProvider at the @a uri. Plays the role of an
+     * Insert @a ContentValues into the WikiContentProvider at the @a uri. Plays the role of an
      * "concrete hook method" in the Template Method pattern.
      *
      * @param uri
@@ -64,12 +64,12 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
      * @throws RemoteException
      */
     public Uri insert(Uri uri, ContentValues cvs) throws RemoteException {
-        return mCpc.insert(uri, cvs);
+        return contentProviderClient.insert(uri, cvs);
     }
 
 
     /**
-     * Insert an array of @a ContentValues into the HobbitContentProvider at the @a uri. Plays the
+     * Insert an array of @a ContentValues into the WikiContentProvider at the @a uri. Plays the
      * role of an "concrete hook method" in the Template Method pattern.
      *
      * @param uri
@@ -78,12 +78,12 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
      * @throws RemoteException
      */
     protected int bulkInsert(Uri uri, ContentValues[] cvsArray) throws RemoteException {
-        return mCpc.bulkInsert(uri, cvsArray);
+        return contentProviderClient.bulkInsert(uri, cvsArray);
     }
 
 
     /**
-     * Return a Cursor from a query on the HobbitContentProvider at the @a uri. Plays the role of
+     * Return a Cursor from a query on the WikiContentProvider at the @a uri. Plays the role of
      * an "concrete hook method" in the Template Method pattern.
      *
      * @param uri
@@ -100,18 +100,18 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
                         String[] selectionArgs,
                         String sortOrder)
             throws RemoteException {
-        // Query for all the characters in the HobbitContentProvider.
-        return mCpc.query(uri,
-                projection,
-                selection,
-                selectionArgs,
-                sortOrder);
+        // Query for all the characters in the WikiContentProvider.
+        return contentProviderClient.query(uri,
+                                    projection,
+                                    selection,
+                                    selectionArgs,
+                                    sortOrder);
     }
 
 
     /**
      * Delete the @a selection and @a selectionArgs with the @a ContentValues in the
-     * HobbitContentProvider at the @a uri. Plays the role of an "concrete hook method" in the
+     * WikiContentProvider at the @a uri. Plays the role of an "concrete hook method" in the
      * Template Method pattern.
      *
      * @param uri
@@ -126,15 +126,15 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
                       String selection,
                       String[] selectionArgs)
         throws RemoteException {
-        return mCpc.update(uri,
-                           cvs,
-                           selection,
-                           selectionArgs);
+        return contentProviderClient.update(uri,
+                                     cvs,
+                                     selection,
+                                     selectionArgs);
     }
 
 
     /**
-     * Delete the @a selection and @a selectionArgs from the HobbitContentProvider at the @a uri.
+     * Delete the @a selection and @a selectionArgs from the WikiContentProvider at the @a uri.
      * Plays the role of an "concrete hook method" in the Template Method pattern.
      *
      * @param uri
@@ -147,9 +147,9 @@ public class WikiOpsContentProviderClient extends WikiOpsImpl {
                          String selection,
                          String[] selectionArgs)
         throws RemoteException {
-        return mCpc.delete(uri,
-                           selection,
-                           selectionArgs);
+        return contentProviderClient.delete(uri,
+                                     selection,
+                                     selectionArgs);
     }
 
 }

@@ -7,15 +7,14 @@ import android.provider.BaseColumns;
 import com.example.csainz.androidwikipedia.R;
 
 /**
- * This contract defines the metadata for the HobbitContentProvider, including the provider's
+ * This contract defines the metadata for the WikiContentProvider, including the provider's
  * access URIs and its "database" constants.
  */
 public final class CharacterContract {
     /**
      * This ContentProvider's unique identifier.
      */
-    public static final String CONTENT_AUTHORITY =
-            "com.example.csainz.androidwikipedia.hobbitprovider";
+    public static final String CONTENT_AUTHORITY = "com.androidwikipedia.wikicontentprovider";
 
     /**
      * Use CONTENT_AUTHORITY to create the base of all URI's which apps will use to contact the
@@ -51,13 +50,13 @@ public final class CharacterContract {
         /**
          * When the Cursor returned for a given URI by the ContentProvider contains 0..x items.
          */
-        public static final String CONTENT_ITEMS_TYPE = "vnd.android.cursor.dir/"
+        public static final String CONTENT_ITEMS_TYPE = "css.android.cursor.dir/"
                 + CONTENT_AUTHORITY + "/" + PATH_CHARACTER;
 
         /**
          * When the Cursor returned for a given URI by the ContentProvider contains 1 item.
          */
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/"
+        public static final String CONTENT_ITEM_TYPE = "css.android.cursor.item/"
                 + CONTENT_AUTHORITY + "/" + PATH_CHARACTER;
 
         /**

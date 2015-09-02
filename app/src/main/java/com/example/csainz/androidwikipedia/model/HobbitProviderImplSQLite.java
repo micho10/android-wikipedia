@@ -30,7 +30,8 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
 
 
     /**
-     * Return true if successfully started.
+     *
+     * @return  true if successfully started.
      */
     public boolean onCreate() {
         // Create the HobbitDatabaseHelper.
@@ -42,6 +43,10 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
     /**
      * Method called to handle insert requests from client applications. This plays the role of
      * the "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @return
      */
     @Override
     public Uri insertCharacters(Uri uri, ContentValues cvs) {
@@ -60,6 +65,10 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
     /**
      * Method that handles bulk insert requests. This plays the role of the "concrete hook method"
      * in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvsArray
+     * @return
      */
     @Override
     public int bulkInsertCharacters(Uri uri, ContentValues[] cvsArray) {
@@ -92,6 +101,13 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
     /**
      * Method called to handle query requests from client applications. This plays the role of the
      * "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param projection
+     * @param selection
+     * @param selectionArgs
+     * @param sortOrder
+     * @return
      */
     @Override
     public Cursor queryCharacters(Uri uri,
@@ -101,20 +117,26 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
                                   String sortOrder) {
         // Expand the selection if necessary.
         selection = addSelectionArgs(selection, selectionArgs, "OR");
-        return mOpenHelper.getReadableDatabase().query
-            (CharacterContract.CharacterEntry.TABLE_NAME,
-             projection,
-             selection,
-             selectionArgs,
-             null,
-             null,
-             sortOrder);
+        return mOpenHelper.getReadableDatabase().query(CharacterContract.CharacterEntry.TABLE_NAME,
+                                                     projection,
+                                                     selection,
+                                                     selectionArgs,
+                                                     null,
+                                                     null,
+                                                     sortOrder);
     }
 
 
     /**
      * Method called to handle query requests from client applications. This plays the role of the
      * "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param projection
+     * @param selection
+     * @param selectionArgs
+     * @param sortOrder
+     * @return
      */
     @Override
     public Cursor queryCharacter(Uri uri,
@@ -124,20 +146,25 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
                                  String sortOrder) {
         // Query the SQLite database for the particular rowId based on (a subset of) the parameters
         // passed into the method.
-        return mOpenHelper.getReadableDatabase().query
-            (CharacterContract.CharacterEntry.TABLE_NAME,
-             projection,
-             addKeyIdCheckToWhereStatement(selection, ContentUris.parseId(uri)),
-             selectionArgs,
-             null,
-             null,
-             sortOrder);
+        return mOpenHelper.getReadableDatabase().query(CharacterContract.CharacterEntry.TABLE_NAME,
+                             projection,
+                             addKeyIdCheckToWhereStatement(selection, ContentUris.parseId(uri)),
+                             selectionArgs,
+                             null,
+                             null,
+                             sortOrder);
     }
 
 
     /**
      * Method called to handle update requests from client applications. This plays the role of the
      * "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int updateCharacters(Uri uri,
@@ -157,6 +184,12 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
     /**
      * Method called to handle update requests from client applications. This plays the role of the
      * "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int updateCharacter(Uri uri,
@@ -176,6 +209,11 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
     /**
      * Method called to handle delete requests from client applications. This plays the role of
      * the "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int deleteCharacters(Uri uri,
@@ -193,6 +231,11 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
     /**
      * Method called to handle delete requests from client applications. This plays the role of the
      * "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int deleteCharacter(Uri uri,
@@ -211,6 +254,11 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
     /**
      * Return a selection string that concatenates all the @a selectionArgs for a given
      * @a selection using the given @a operation.
+     *
+     * @param selection
+     * @param selectionArgs
+     * @param operation
+     * @return
      */
     private String addSelectionArgs(String selection,
                                     String [] selectionArgs,
@@ -224,7 +272,7 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
             // Properly add the selection args to the selectionResult.
             for (int i = 0; i < selectionArgs.length - 1; ++i)
                 selectionResult += (selection + " = ? " + operation + " ");
-            
+
             // Handle the final selection case.
             selectionResult += (selection + " = ?");
 
@@ -240,13 +288,15 @@ public class HobbitProviderImplSQLite extends HobbitProviderImpl {
 
     /**
      * Helper method that appends a given key id to the end of the WHERE statement parameter.
+     *
+     * @param whereStatement
+     * @param id
+     * @return
      */
     private static String addKeyIdCheckToWhereStatement(String whereStatement, long id) {
-        String newWhereStatement;
-        if (TextUtils.isEmpty(whereStatement)) 
-            newWhereStatement = "";
-        else 
-            newWhereStatement = whereStatement + " AND ";
+        String newWhereStatement = "";
+        if (!TextUtils.isEmpty(whereStatement))
+            newWhereStatement +=  " AND ";
 
         // Append the key id to the end of the WHERE statement.
         return newWhereStatement + CharacterContract.CharacterEntry._ID + " = '" + id + "'";

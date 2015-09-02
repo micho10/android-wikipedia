@@ -15,7 +15,7 @@ import android.net.Uri;
  * plays the role of the "Concrete Implementor" in the Bridge pattern and the "Concrete Class" in
  * the TemplateMethod pattern.
  */
-public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
+public class HobbitProviderImplHashMap extends HobbitProviderImpl {
     /**
      * This implementation uses a simple HashMap to map IDs to CharacterRecords.
      */
@@ -24,6 +24,8 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
 
     /**
      * Constructor initializes the super class.
+     *
+     * @param context
      */
     public HobbitProviderImplHashMap(Context context) {
         super(context);
@@ -33,6 +35,10 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Method called to handle insert requests from client applications. This plays the role of
      * the "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @return
      */
     @Override
     public Uri insertCharacters(Uri uri, ContentValues cvs) {
@@ -52,6 +58,10 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Method that handles bulk insert requests. This plays the role of the "concrete hook method"
      * in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvsArray
+     * @return
      */
     @Override
     public int bulkInsertCharacters(Uri uri, ContentValues[] cvsArray) {
@@ -75,6 +85,13 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Method called to handle query requests from client applications. This plays the role of
      * the "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param projection
+     * @param selection
+     * @param selectionArgs
+     * @param sortOrder
+     * @return
      */
     @Override
     public Cursor queryCharacters(Uri uri,
@@ -87,11 +104,12 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
 
         synchronized (this) {
             // Implement a simple query mechanism for the table.
-            for (CharacterRecord cr : mCharacterMap.values())
+            for (CharacterRecord cr : mCharacterMap.values()) {
                 buildCursorConditionally(cursor,
-                                         cr,
-                                         selection,
-                                         selectionArgs);
+                                        cr,
+                                        selection,
+                                        selectionArgs);
+            }
         }
 
         return cursor;
@@ -101,6 +119,13 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Method called to handle query requests from client applications. This plays the role of the
      * "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param projection
+     * @param selection
+     * @param selectionArgs
+     * @param sortOrder
+     * @return
      */
     @Override
     public Cursor queryCharacter(Uri uri,
@@ -131,6 +156,11 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Build a MatrixCursor that matches the parameters. This plays the role of the "concrete hook
      * method" in the Template Method pattern.
+     *
+     * @param cursor
+     * @param cr
+     * @param selection
+     * @param selectionArgs
      */
     private void buildCursorConditionally(MatrixCursor cursor,
                                           CharacterRecord cr,
@@ -161,6 +191,12 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Method called to handle update requests from client applications. This plays the role of
      * the "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int updateCharacters(Uri uri,
@@ -173,12 +209,12 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
             // Implement a simple update mechanism for the table.
             for (CharacterRecord cr : 
                      mCharacterMap.values().toArray
-                     (new CharacterRecord[mCharacterMap.values().size()]))
-                recsUpdated += 
-                    updateEntryConditionally(cr,
-                                             cvs,
-                                             selection,
-                                             selectionArgs);
+                     (new CharacterRecord[mCharacterMap.values().size()])) {
+                recsUpdated += updateEntryConditionally(cr,
+                                                        cvs,
+                                                        selection,
+                                                        selectionArgs);
+            }
         }
 
         return recsUpdated;
@@ -188,6 +224,12 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Method called to handle update requests from client applications. This plays the role of
      * the "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param cvs
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int updateCharacter(Uri uri,
@@ -212,6 +254,12 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Update @a rec in the HashMap with the contents of the @a ContentValues if it matches the
      * @a selection criteria.
+     *
+     * @param rec
+     * @param cvs
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     private int updateEntryConditionally(CharacterRecord rec,
                                          ContentValues cvs,
@@ -246,6 +294,11 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Method called to handle delete requests from client applications. This plays the role of
      * the "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int deleteCharacters(Uri uri,
@@ -269,6 +322,11 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
     /**
      * Method called to handle delete requests from client applications. This plays the role of
      * the "concrete hook method" in the Template Method pattern.
+     *
+     * @param uri
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     @Override
     public int deleteCharacter(Uri uri,
@@ -290,6 +348,11 @@ public class HobbitProviderImplHashMap extends HobbitProviderImpl  {
 
     /**
      * Delete @a rec from the HashMap if it matches the @a selection criteria.
+     *
+     * @param rec
+     * @param selection
+     * @param selectionArgs
+     * @return
      */
     private int deleteEntryConditionally(CharacterRecord rec,
                                          String selection,

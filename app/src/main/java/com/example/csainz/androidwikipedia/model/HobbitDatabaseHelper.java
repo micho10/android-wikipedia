@@ -28,8 +28,7 @@ public class HobbitDatabaseHelper extends SQLiteOpenHelper {
     /**
      * SQL statement used to create the Hobbit table.
      */
-    final String SQL_CREATE_HOBBIT_TABLE =
-        "CREATE TABLE "
+    final String SQL_CREATE_HOBBIT_TABLE = "CREATE TABLE "
         + CharacterContract.CharacterEntry.TABLE_NAME + " (" 
         + CharacterContract.CharacterEntry._ID + " INTEGER PRIMARY KEY, " 
         + CharacterContract.CharacterEntry.COLUMN_NAME + " TEXT NOT NULL, " 
@@ -46,15 +45,17 @@ public class HobbitDatabaseHelper extends SQLiteOpenHelper {
      * @param context
      */
     public HobbitDatabaseHelper(Context context) {
-        super(context, 
-              context.getCacheDir() + File.separator + DATABASE_NAME,
-              null,
-              DATABASE_VERSION);
+        super(context,
+                context.getCacheDir() + File.separator + DATABASE_NAME,
+                null,
+                DATABASE_VERSION);
     }
 
 
     /**
      * Hook method called when the database is created.
+     *
+     * @param db
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -65,6 +66,10 @@ public class HobbitDatabaseHelper extends SQLiteOpenHelper {
 
     /**
      * Hook method called when the database is upgraded.
+     *
+     * @param db
+     * @param oldVersion
+     * @param newVersion
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

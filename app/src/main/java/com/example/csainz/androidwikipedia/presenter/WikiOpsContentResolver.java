@@ -8,15 +8,15 @@ import android.os.RemoteException;
 
 /**
  * Class that uses a ContentResolver to insert, query, update, and delete characters from the
- * HobbitContentProvider. This class plays the role of the "Concrete Implementor" in the Bridge
+ * WikiContentProvider. This class plays the role of the "Concrete Implementor" in the Bridge
  * pattern and the "Concrete Class" in the TemplateMethod pattern. It's also an example of the
  * "External Polymorphism" pattern.
  */
 public class WikiOpsContentResolver extends WikiOpsImpl {
     /**
-     * Define the Proxy for accessing the HobbitContentProvider.
+     * Define the Proxy for accessing the WikiContentProvider.
      */
-    private ContentResolver mCr;
+    private ContentResolver contentResolver;
 
 
     /**
@@ -35,13 +35,12 @@ public class WikiOpsContentResolver extends WikiOpsImpl {
         
         if (firstTimeIn) 
             // Store the Application context's ContentResolver.
-            mCr = 
-                view.getApplicationContext().getContentResolver();
+            contentResolver = view.getApplicationContext().getContentResolver();
     }
 
 
     /**
-     * Insert @a ContentValues into the HobbitContentProvider at the @a uri. Plays the role of a
+     * Insert @a ContentValues into the WikiContentProvider at the @a uri. Plays the role of a
      * "concrete hook method" in the Template Method pattern.
      *
      * @param uri
@@ -49,14 +48,13 @@ public class WikiOpsContentResolver extends WikiOpsImpl {
      * @return
      * @throws RemoteException
      */
-    public Uri insert(Uri uri, ContentValues cvs)
-        throws RemoteException {
-        return mCr.insert(uri, cvs);
+    public Uri insert(Uri uri, ContentValues cvs) throws RemoteException {
+        return contentResolver.insert(uri, cvs);
     }
 
 
     /**
-     * Insert an array of @a ContentValues into the HobbitContentProvider at the @a uri. Plays the
+     * Insert an array of @a ContentValues into the WikiContentProvider at the @a uri. Plays the
      * role of a "concrete hook method" in the Template Method pattern.
      *
      * @param uri
@@ -64,14 +62,13 @@ public class WikiOpsContentResolver extends WikiOpsImpl {
      * @return
      * @throws RemoteException
      */
-    protected int bulkInsert(Uri uri, ContentValues[] cvsArray)
-        throws RemoteException {
-        return mCr.bulkInsert(uri, cvsArray);
+    protected int bulkInsert(Uri uri, ContentValues[] cvsArray) throws RemoteException {
+        return contentResolver.bulkInsert(uri, cvsArray);
     }
 
 
     /**
-     * Return a Cursor from a query on the HobbitContentProvider at the @a uri. Plays the role of
+     * Return a Cursor from a query on the WikiContentProvider at the @a uri. Plays the role of
      * an "concrete hook method" in the Template Method pattern.
      *
      * @param uri
@@ -88,18 +85,18 @@ public class WikiOpsContentResolver extends WikiOpsImpl {
                         String[] selectionArgs,
                         String sortOrder) 
         throws RemoteException {
-        // Query for all the characters in the HobbitContentProvider.
-        return mCr.query(uri,
-                projection,
-                selection,
-                selectionArgs,
-                sortOrder);
+        // Query for all the characters in the WikiContentProvider.
+        return contentResolver.query(uri,
+                                projection,
+                                selection,
+                                selectionArgs,
+                                sortOrder);
     }
 
 
     /**
      * Delete the @a selection and @a selectionArgs with the @a ContentValues in the
-     * HobbitContentProvider at the @a uri. Plays the role of an "concrete hook method" in the
+     * WikiContentProvider at the @a uri. Plays the role of an "concrete hook method" in the
      * Template Method pattern.
      *
      * @param uri
@@ -114,15 +111,15 @@ public class WikiOpsContentResolver extends WikiOpsImpl {
                       String selection,
                       String[] selectionArgs)
         throws RemoteException {
-        return mCr.update(uri,
-                          cvs,
-                          selection,
-                          selectionArgs);
+        return contentResolver.update(uri,
+                               cvs,
+                               selection,
+                               selectionArgs);
     }
 
 
     /**
-     * Delete the @a selection and @a selectionArgs from the HobbitContentProvider at the @a uri.
+     * Delete the @a selection and @a selectionArgs from the WikiContentProvider at the @a uri.
      * Plays the role of an "concrete hook method" in the Template Method pattern.
      *
      * @param uri
@@ -135,9 +132,9 @@ public class WikiOpsContentResolver extends WikiOpsImpl {
                          String selection,
                          String[] selectionArgs)
         throws RemoteException {
-        return mCr.delete(uri,
-                          selection,
-                          selectionArgs);
+        return contentResolver.delete(uri,
+                              selection,
+                              selectionArgs);
     }
 
 }

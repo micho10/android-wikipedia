@@ -26,7 +26,7 @@ import net.sourceforge.jwbf.mediawiki.bots.MediaWikiBot;
  * MVP pattern. The WikiOps.View interface is used to minimize dependencies between the View and
  * Presenter layers.
  */
-public class MainActivity extends GenericActivity<WikiOps.View, WikiOps>
+public class WikiActivity extends GenericActivity<WikiOps.View, WikiOps>
         implements WikiOps.View {
 
     /**
