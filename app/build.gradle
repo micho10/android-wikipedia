@@ -28,3 +28,12 @@ dependencies {
 //    compile 'org.springframework.android:spring-android-core:1.0.1.RELEASE'
 //    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
 }
+
+android {
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE.txt'
+    }
+}

@@ -8,5 +8,6 @@
     <string name="modify_all">Modify\nAll</string>
     <string name="content_resolver">Content Resolver</string>
     <string name="content_provider_client">Content Provider Client</string>
+    <string name="title_activity_wikipedia">WikipediaActivity</string>
 
 </resources>

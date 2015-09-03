@@ -14,9 +14,6 @@ import com.example.csainz.androidwikipedia.R;
 import com.example.csainz.androidwikipedia.common.GenericActivity;
 import com.example.csainz.androidwikipedia.presenter.WikiOps;
 
-import net.sourceforge.jwbf.core.contentRep.Article;
-import net.sourceforge.jwbf.mediawiki.bots.MediaWikiBot;
-
 
 /**
  * This is the main Activity of the Android-Wikipedia application, which can retrieve 10 random
@@ -26,8 +23,7 @@ import net.sourceforge.jwbf.mediawiki.bots.MediaWikiBot;
  * MVP pattern. The WikiOps.View interface is used to minimize dependencies between the View and
  * Presenter layers.
  */
-public class WikiActivity extends GenericActivity<WikiOps.View, WikiOps>
-        implements WikiOps.View {
+public class WikiActivity extends GenericActivity<WikiOps.View, WikiOps> implements WikiOps.View {
 
     /**
      * ListView displays a list of pages retrieved from Wikipedia.
@@ -231,16 +227,5 @@ public class WikiActivity extends GenericActivity<WikiOps.View, WikiOps>
 //        getOps().onConfiguration(this, true);
 //        return true;
 //    }
-
-
-    /**
-     * Retrieve pages from Wikipedia
-     */
-    private void getWikiPages() {
-        MediaWikiBot wikiBot = new MediaWikiBot("https://en.wikipedia.org/w/");
-        Article article = wikiBot.getArticle("42");
-        System.out.println(article.getText().substring(5, 42));
-        // HITCHHIKER'S GUIDE TO THE GALAXY FANS
-    }
 
 }
