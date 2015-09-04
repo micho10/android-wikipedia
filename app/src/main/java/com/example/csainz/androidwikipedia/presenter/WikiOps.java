@@ -24,7 +24,7 @@ public class WikiOps implements ConfigurableOps<WikiOps.View> {
 
     /**
      * This interface defines the minimum interface needed by the WikiOps class in the
-     * "Presenter" layer to interact with the WikiActivity in the "View" layer.
+     * "Presenter" layer to interact with the WikiListActivity in the "View" layer.
      */
     public interface View extends ContextView {
         /**

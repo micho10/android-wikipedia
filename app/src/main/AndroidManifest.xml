@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".view.WikiActivity"
+            android:name=".view.WikiListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,12 +34,16 @@
         </service>
 
         <activity
-            android:name=".view.WikipediaActivity"
+            android:name=".view.WikiWebActivity"
             android:label="@string/title_activity_wikipedia"
             android:parentActivityName=".common.GenericActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.csainz.androidwikipedia.common.GenericActivity" />
+        </activity>
+        <activity
+            android:name=".view.BookmarkManagerActivity"
+            android:label="@string/title_activity_bookmark_manager" >
         </activity>
     </application>
 

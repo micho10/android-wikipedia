@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.csainz.androidwikipedia.R;
 import com.example.csainz.androidwikipedia.common.GenericActivity;
 
-public class WikipediaActivity extends GenericActivity {
+public class WikiWebActivity extends GenericActivity {
 
     private final Context myApp = this;
 

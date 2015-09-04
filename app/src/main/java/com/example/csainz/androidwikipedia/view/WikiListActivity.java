@@ -23,10 +23,10 @@ import com.example.csainz.androidwikipedia.presenter.WikiOps;
  * MVP pattern. The WikiOps.View interface is used to minimize dependencies between the View and
  * Presenter layers.
  */
-public class WikiActivity extends GenericActivity<WikiOps.View, WikiOps> implements WikiOps.View {
+public class WikiListActivity extends GenericActivity<WikiOps.View, WikiOps> implements WikiOps.View {
 
     /**
-     * ListView displays a list of pages retrieved from Wikipedia.
+     * ListView displays a list of links to pages retrieved from Wikipedia.
      */
     private ListView mListView;
 

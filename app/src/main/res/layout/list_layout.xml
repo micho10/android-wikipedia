@@ -1,25 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent"
-	android:baselineAligned="true" android:orientation="horizontal">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:baselineAligned="true"
+	android:orientation="horizontal">
 
 	<TextView
 		android:layout_width="wrap_content"
 	   	android:layout_height="wrap_content"
-		android:id="@+id/idString"
+		android:id="@+id/link1"
 	    android:layout_marginStart="10dip">
 	</TextView>
 	<TextView
 		android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-		android:id="@+id/name"
+		android:id="@+id/link2"
 	    android:layout_marginStart="10dip">
 	</TextView>
 	<TextView
 		android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-		android:id="@+id/race"
+		android:id="@+id/link3"
 	    android:layout_marginStart="10dip">
+	</TextView>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/link4"
+		android:layout_marginStart="10dip">
+	</TextView>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/link5"
+		android:layout_marginStart="10dip">
+	</TextView>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/link6"
+		android:layout_marginStart="10dip">
+	</TextView>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/link7"
+		android:layout_marginStart="10dip">
+	</TextView>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/link8"
+		android:layout_marginStart="10dip">
+	</TextView>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/link9"
+		android:layout_marginStart="10dip">
+	</TextView>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/link10"
+		android:layout_marginStart="10dip">
 	</TextView>
 
 </LinearLayout>
