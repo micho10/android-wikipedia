@@ -3,8 +3,6 @@
     package="com.example.csainz.androidwikipedia" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <provider
         android:name=".model.HobbitProvider"
@@ -14,37 +12,23 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/spring_android"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:icon="@drawable/spring_android"
+        android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+
         <activity
-            android:name=".view.WikiListActivity"
-            android:label="@string/app_name" >
+            android:name=".view.WikiMainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".view.WikiService"
-            android:enabled="true"
-            android:exported="true" >
-        </service>
+        <activity
+            android:name=".view.CollectionDemoActivity"
+            android:label="@string/demo_collection" />
 
-        <activity
-            android:name=".view.WikiWebActivity"
-            android:label="@string/title_activity_wikipedia"
-            android:parentActivityName=".common.GenericActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.csainz.androidwikipedia.common.GenericActivity" />
-        </activity>
-        <activity
-            android:name=".view.BookmarkManagerActivity"
-            android:label="@string/title_activity_bookmark_manager" >
-        </activity>
     </application>
 
 </manifest>
