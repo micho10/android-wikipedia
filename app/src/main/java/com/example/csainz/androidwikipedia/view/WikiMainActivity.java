@@ -2,7 +2,6 @@ package com.example.csainz.androidwikipedia.view;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,7 +15,10 @@ import android.widget.TextView;
 
 import com.example.csainz.androidwikipedia.R;
 
-public class WikiMainActivity extends FragmentActivity implements ActionBar.TabListener {
+public class WikiMainActivity extends FragmentActivity implements ActionBar.TabListener,
+        LinksFragment.OnFragmentInteractionListener {
+
+    private static final int NUM_TABS = 3;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
@@ -36,8 +38,7 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Create the adapter that will return a fragment for each of the three primary sections
-        // of the app.
+        // Create the adapter that will return a fragment for each of the three primary sections of the app.
         mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the action bar.
@@ -88,6 +89,11 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+    @Override
+    public void onFragmentInteraction(String id) {
+
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
      * sections of the app.
@@ -102,9 +108,8 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
         public Fragment getItem(int i) {
             switch (i) {
                 case 0:
-                    // The first section of the app is the most interesting -- it offers
-                    // a launchpad into the other demonstrations in this example application.
-                    return new LaunchpadSectionFragment();
+                    // Tab with links to random Wikipedia pages
+                    return new LinksFragment();
 
                 default:
                     // The other sections of the app are dummy placeholders.
@@ -118,7 +123,7 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
 
         @Override
         public int getCount() {
-            return 3;
+            return NUM_TABS;
         }
 
         @Override
@@ -136,47 +141,47 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
         }
     }
 
-    /**
-     * A fragment that launches other parts of the demo application.
-     */
-    public static class LaunchpadSectionFragment extends Fragment {
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_section_launchpad, container, false);
-
-            // Demonstration of a collection-browsing activity.
-            rootView.findViewById(R.id.demo_collection_button)
-                    .setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(getActivity(), CollectionDemoActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-
-            // Demonstration of navigating to external activities.
-            rootView.findViewById(R.id.demo_external_activity)
-                    .setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // Create an intent that asks the user to pick a photo, but using
-                            // FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET, ensures that relaunching
-                            // the application from the device home screen does not return
-                            // to the external activity.
-                            Intent externalActivityIntent = new Intent(Intent.ACTION_PICK);
-                            externalActivityIntent.setType("image/*");
-                            externalActivityIntent.addFlags(
-                                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                            startActivity(externalActivityIntent);
-                        }
-                    });
-
-            return rootView;
-        }
-    }
-
+//    /**
+//     * A fragment that launches other parts of the demo application.
+//     */
+//    public static class LaunchpadSectionFragment extends Fragment {
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                Bundle savedInstanceState) {
+//            View rootView = inflater.inflate(R.layout.fragment_section_launchpad, container, false);
+//
+//            // Demonstration of a collection-browsing activity.
+//            rootView.findViewById(R.title.demo_collection_button)
+//                    .setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            Intent intent = new Intent(getActivity(), CollectionDemoActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    });
+//
+//            // Demonstration of navigating to external activities.
+//            rootView.findViewById(R.title.demo_external_activity)
+//                    .setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            // Create an intent that asks the user to pick a photo, but using
+//                            // FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET, ensures that relaunching
+//                            // the application from the device home screen does not return
+//                            // to the external activity.
+//                            Intent externalActivityIntent = new Intent(Intent.ACTION_PICK);
+//                            externalActivityIntent.setType("image/*");
+//                            externalActivityIntent.addFlags(
+//                                    Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+//                            startActivity(externalActivityIntent);
+//                        }
+//                    });
+//
+//            return rootView;
+//        }
+//    }
+//
     /**
      * A dummy fragment representing a section of the app, but that simply displays dummy text.
      */
@@ -194,4 +199,5 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
             return rootView;
         }
     }
+
 }
