@@ -3,6 +3,7 @@ package com.example.csainz.androidwikipedia.view;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,7 +17,8 @@ import android.widget.TextView;
 
 import com.example.csainz.androidwikipedia.R;
 
-public class WikiMainActivity extends FragmentActivity implements ActionBar.TabListener {
+public class WikiMainActivity extends FragmentActivity implements ActionBar.TabListener,
+        BrowserFragment.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
@@ -88,6 +90,11 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
      * sections of the app.
@@ -105,6 +112,9 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
                     // The first section of the app is the most interesting -- it offers
                     // a launchpad into the other demonstrations in this example application.
                     return new LaunchpadSectionFragment();
+
+                case 1:
+                    return BrowserFragment.newInstance("https://en.wikipedia.org/wiki/Special:Random", "");
 
                 default:
                     // The other sections of the app are dummy placeholders.
