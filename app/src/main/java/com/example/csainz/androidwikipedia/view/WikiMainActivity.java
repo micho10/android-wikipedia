@@ -2,6 +2,7 @@ package com.example.csainz.androidwikipedia.view;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 import com.example.csainz.androidwikipedia.R;
 
 public class WikiMainActivity extends FragmentActivity implements ActionBar.TabListener,
-        LinksFragment.OnFragmentInteractionListener {
+        LinksFragment.OnFragmentInteractionListener, BrowserFragment.OnFragmentInteractionListener {
 
     private static final int NUM_TABS = 3;
 
@@ -91,6 +92,10 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
 
     @Override
     public void onFragmentInteraction(String id) {
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 
@@ -110,6 +115,9 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
                 case 0:
                     // Tab with links to random Wikipedia pages
                     return new LinksFragment();
+
+                case 1:
+                    return BrowserFragment.newInstance("https://en.wikipedia.org/wiki/Special:Random", "");
 
                 default:
                     // The other sections of the app are dummy placeholders.
