@@ -30,8 +30,7 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
     AppSectionsPagerAdapter mAppSectionsPagerAdapter;
 
     /**
-     * The {@link ViewPager} that will display the three primary sections of the app, one at a
-     * time.
+     * The {@link ViewPager} that will display the three primary sections of the app, one at a time.
      */
     ViewPager mViewPager;
 
@@ -114,7 +113,7 @@ public class WikiMainActivity extends FragmentActivity implements ActionBar.TabL
             switch (i) {
                 case 0:
                     // Tab with links to random Wikipedia pages
-                    return new LinksFragment();
+                    return LinksFragment.newInstance("", "");
 
                 case 1:
                     return BrowserFragment.newInstance("https://en.wikipedia.org/wiki/Special:Random", "");

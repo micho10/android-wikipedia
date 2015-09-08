@@ -13,7 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.example.csainz.androidwikipedia.R;
-import com.example.csainz.androidwikipedia.view.dummy.DummyContent;
+import com.example.csainz.androidwikipedia.model.WikiContent;
 
 /**
  * A fragment representing a list of Items.
@@ -74,8 +74,11 @@ public class LinksFragment extends Fragment implements AbsListView.OnItemClickLi
         }
 
         // TODO: Change Adapter to display your url
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        mAdapter = new ArrayAdapter<>(
+                getActivity(),                          // context
+                android.R.layout.simple_list_item_1,    // layout for a single row
+                android.R.id.text1,                     // id of the TextView
+                WikiContent.ITEMS);                    // content
     }
 
     @Override
@@ -115,7 +118,7 @@ public class LinksFragment extends Fragment implements AbsListView.OnItemClickLi
         if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the fragment is attached to
             // one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            mListener.onFragmentInteraction(WikiContent.ITEMS.get(position).title);
         }
     }
 
@@ -141,7 +144,7 @@ public class LinksFragment extends Fragment implements AbsListView.OnItemClickLi
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+        void onFragmentInteraction(String id);
     }
 
 }

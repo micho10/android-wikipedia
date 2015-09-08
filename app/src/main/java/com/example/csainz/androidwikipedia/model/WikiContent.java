@@ -1,4 +1,4 @@
-package com.example.csainz.androidwikipedia.view.dummy;
+package com.example.csainz.androidwikipedia.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,26 +9,26 @@ import java.util.Map;
  * Helper class for providing sample url for user interfaces created by Android template wizards.
  * <p/>
  */
-public class LinkContent {
+public class WikiContent {
 
     /**
-     * An array of sample (dummy) items.
+     * An array of sample Wikipedia link items.
      */
-    public static List<LinkItem> ITEMS = new ArrayList<>();
+    public static List<WikiItem> ITEMS = new ArrayList<>();
 
     /**
-     * A map of sample (dummy) items, by ID.
+     * A map of sample Wikipedia link items, by ID.
      */
-    public static Map<String, LinkItem> ITEM_MAP = new HashMap<>();
+    public static Map<String, WikiItem> ITEM_MAP = new HashMap<>();
 
     static {
         // Add 3 sample items.
-        addItem(new LinkItem("1", "Item 1"));
-        addItem(new LinkItem("2", "Item 2"));
-        addItem(new LinkItem("3", "Item 3"));
+        addItem(new WikiItem("1", "Item 1"));
+        addItem(new WikiItem("2", "Item 2"));
+        addItem(new WikiItem("3", "Item 3"));
     }
 
-    private static void addItem(LinkItem item) {
+    private static void addItem(WikiItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.title, item);
     }
@@ -37,11 +37,11 @@ public class LinkContent {
     /**
      * An item representing a URL.
      */
-    public static class LinkItem {
+    public static class WikiItem {
         public String title;
         public String url;
 
-        public LinkItem(String title, String url) {
+        public WikiItem(String title, String url) {
             this.title = title;
             this.url = url;
         }
