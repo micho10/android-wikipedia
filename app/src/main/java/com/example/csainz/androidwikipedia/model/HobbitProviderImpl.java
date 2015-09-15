@@ -101,7 +101,7 @@ public abstract class HobbitProviderImpl {
     public Uri insert(Uri uri, ContentValues cvs) {
         Uri returnUri;
 
-        // Try to match against the path in a url. It returns the code for the matched node
+        // Try to match against the path in a pageId. It returns the code for the matched node
         // (added using addURI), or -1 if there is no matched node. If there's a match insert a
         // new row.
         switch (sUriMatcher.match(uri)) {
@@ -138,7 +138,7 @@ public abstract class HobbitProviderImpl {
      * @return
      */
     public int bulkInsert(Uri uri, ContentValues[] cvsArray) {
-        // Try to match against the path in a url. It returns the code for the matched node
+        // Try to match against the path in a pageId. It returns the code for the matched node
         // (added using addURI), or -1 if there is no matched node. If there's a match insert new
         // rows.
         switch (sUriMatcher.match(uri)) {
@@ -334,7 +334,7 @@ public abstract class HobbitProviderImpl {
                       String[] selectionArgs) {
         int recsDeleted = 0;
         
-        // Try to match against the path in a url. It returns the code for the matched node
+        // Try to match against the path in a pageId. It returns the code for the matched node
         // (added using addURI) or -1 if there is no matched node. If a match is found delete the
         // appropriate rows.
         switch (sUriMatcher.match(uri)) {

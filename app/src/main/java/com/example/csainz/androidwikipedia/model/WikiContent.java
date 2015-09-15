@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * Helper class for providing sample url for user interfaces created by Android template wizards.
+ * Helper class for providing sample pageId for user interfaces created by Android template wizards.
  * <p/>
  */
 public class WikiContent {
@@ -21,34 +22,27 @@ public class WikiContent {
      */
     public static Map<String, WikiItem> ITEM_MAP = new HashMap<>();
 
-    static {
-        // Add 3 sample items.
-        addItem(new WikiItem("1", "Item 1"));
-        addItem(new WikiItem("2", "Item 2"));
-        addItem(new WikiItem("3", "Item 3"));
-    }
-
     private static void addItem(WikiItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.title, item);
     }
 
-
     /**
-     * An item representing a URL.
+     * An item representing a Wikipedia page.
      */
     public static class WikiItem {
+        public String pageId;
         public String title;
-        public String url;
 
-        public WikiItem(String title, String url) {
+        public WikiItem(String title, String pageId) {
             this.title = title;
-            this.url = url;
+            this.pageId = pageId;
         }
 
         @Override
         public String toString() {
-            return title + " (" + url + ")";
+            return " (" + pageId + ")" + pageId;
         }
     }
+
 }

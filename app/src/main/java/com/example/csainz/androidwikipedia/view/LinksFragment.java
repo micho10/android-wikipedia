@@ -73,7 +73,7 @@ public class LinksFragment extends Fragment implements AbsListView.OnItemClickLi
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        // TODO: Change Adapter to display your url
+        // TODO: Change Adapter to display your pageId
         mAdapter = new ArrayAdapter<>(
                 getActivity(),                          // context
                 android.R.layout.simple_list_item_1,    // layout for a single row
@@ -123,7 +123,7 @@ public class LinksFragment extends Fragment implements AbsListView.OnItemClickLi
     }
 
     /**
-     * The default url for this Fragment has a TextView that is shown when the list is empty.
+     * The default pageId for this Fragment has a TextView that is shown when the list is empty.
      * If you would like to change the text, call this method to supply the text it should use.
      */
     public void setEmptyText(CharSequence emptyText) {

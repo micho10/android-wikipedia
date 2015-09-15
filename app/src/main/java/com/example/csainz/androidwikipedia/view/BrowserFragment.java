@@ -80,13 +80,13 @@ public class BrowserFragment extends Fragment {
             wikiWebView.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                    if (Uri.parse(url).getHost().equals("en.wikipedia.org")) {
+//                    if (Uri.parse(pageId).getHost().equals("en.wikipedia.org")) {
                         // This is the Wikipedia site, so don't override; let the WebView load the page
                         return false;
 //                    }
                     // Otherwise, the link is not for a page on my site, so launch another Activity
                     // that handles URLs
-//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(pageId));
 //                    startActivity(intent);
 //                    return true;
                 }
