@@ -73,12 +73,18 @@ public class LinksFragment extends Fragment implements AbsListView.OnItemClickLi
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        // TODO: Change Adapter to display your pageId
-        mAdapter = new ArrayAdapter<>(
-                getActivity(),                          // context
-                android.R.layout.simple_list_item_1,    // layout for a single row
-                android.R.id.text1,                     // id of the TextView
-                WikiContent.ITEMS);                    // content
+        // Fill out wikicontent.items
+
+        mAdapter = new CustomAdapter(
+                getActivity(),
+                R.layout.fragment_row_layout,
+                WikiContent.ITEMS);
+
+//        mAdapter = new ArrayAdapter<>(
+//                getActivity(),                          // context
+//                android.R.layout.simple_list_item_1,    // layout for a single row
+//                android.R.id.text1,                     // id of the TextView
+//                WikiContent.ITEMS);                     // content
     }
 
     @Override

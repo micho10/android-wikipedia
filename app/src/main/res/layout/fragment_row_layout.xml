@@ -15,26 +15,15 @@
         />
 
     <!-- Image for each ListItem row.
-         We can refer to images in our drawable folder with @drawable/dot for the image named dot.png -->
+         We can refer to images in our drawable folder with @drawable/ic_action for the image
+         named ic_action.png -->
     <ImageView
         android:id="@+id/bookmarkImg"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
         android:src="@drawable/ic_action"
         />
 
 </LinearLayout>
-
-
-<!--
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/text1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:textSize="24sp"
-    android:padding="32dp" />
--->

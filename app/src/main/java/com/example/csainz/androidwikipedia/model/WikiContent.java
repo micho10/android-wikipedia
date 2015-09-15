@@ -22,6 +22,21 @@ public class WikiContent {
      */
     public static Map<String, WikiItem> ITEM_MAP = new HashMap<>();
 
+    static {
+//        Wiki wiki = null; // login
+//        try {
+//            wiki = new Wiki("", "", "en.wikipedia.org");
+//        } catch (LoginException e) {
+//            e.printStackTrace();
+//        }
+//        wiki.getWiki("");
+
+        addItem(new WikiItem("Wiki web 1", "1"));
+        addItem(new WikiItem("Wiki web 2", "2"));
+        addItem(new WikiItem("Wiki web 3", "3"));
+
+    }
+
     private static void addItem(WikiItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.title, item);
